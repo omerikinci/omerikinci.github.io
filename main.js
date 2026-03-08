@@ -57,7 +57,7 @@ function updateLightboxView() {
   if (lightboxLoader) lightboxLoader.hidden = false;
 
   lightboxImage.src = fullSrc;
-  lightboxImage.alt = active.alt || "Proje gorseli";
+  lightboxImage.alt = active.alt || "Proje görseli";
   lightboxCaption.textContent = active.alt || "";
   lightboxCounter.textContent = `${lightboxState.index + 1} / ${group.length}`;
 

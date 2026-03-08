@@ -46,7 +46,7 @@ function updateLightboxView() {
   if (!group || !group.length) return;
 
   const active = group[lightboxState.index];
-  lightboxImage.src = active.currentSrc || active.src;
+  lightboxImage.src = active.dataset.full || active.currentSrc || active.src;
   lightboxImage.alt = active.alt || "Proje gorseli";
   lightboxCaption.textContent = active.alt || "";
   lightboxCounter.textContent = `${lightboxState.index + 1} / ${group.length}`;

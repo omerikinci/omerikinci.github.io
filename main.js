@@ -29,6 +29,7 @@ const galleryGroups = galleries.map((gallery, groupIndex) => {
 
 const lightbox = document.getElementById("lightbox");
 const lightboxImage = document.getElementById("lightboxImage");
+const lightboxLoader = document.getElementById("lightboxLoader");
 const lightboxCaption = document.getElementById("lightboxCaption");
 const lightboxCounter = document.getElementById("lightboxCounter");
 const lightboxClose = document.getElementById("lightboxClose");
@@ -41,15 +42,28 @@ const lightboxState = {
   previousFocus: null
 };
 
+function hideLightboxLoading() {
+  lightbox.classList.remove("is-loading");
+  if (lightboxLoader) lightboxLoader.hidden = true;
+}
+
 function updateLightboxView() {
   const group = galleryGroups[lightboxState.group];
   if (!group || !group.length) return;
 
   const active = group[lightboxState.index];
-  lightboxImage.src = active.dataset.full || active.currentSrc || active.src;
+  const fullSrc = active.dataset.full || active.currentSrc || active.src;
+  lightbox.classList.add("is-loading");
+  if (lightboxLoader) lightboxLoader.hidden = false;
+
+  lightboxImage.src = fullSrc;
   lightboxImage.alt = active.alt || "Proje gorseli";
   lightboxCaption.textContent = active.alt || "";
   lightboxCounter.textContent = `${lightboxState.index + 1} / ${group.length}`;
+
+  if (lightboxImage.complete && lightboxImage.naturalWidth > 0) {
+    hideLightboxLoading();
+  }
 }
 
 function openLightbox(groupIndex, imageIndex, trigger) {
@@ -67,6 +81,7 @@ function closeLightbox() {
   lightbox.hidden = true;
   lightbox.setAttribute("aria-hidden", "true");
   document.body.classList.remove("no-scroll");
+  hideLightboxLoading();
   if (lightboxState.previousFocus && lightboxState.previousFocus.focus) {
     lightboxState.previousFocus.focus();
   }
@@ -111,3 +126,5 @@ document.addEventListener("keydown", (event) => {
 lightboxClose.addEventListener("click", closeLightbox);
 lightboxPrev.addEventListener("click", () => stepLightbox(-1));
 lightboxNext.addEventListener("click", () => stepLightbox(1));
+lightboxImage.addEventListener("load", hideLightboxLoading);
+lightboxImage.addEventListener("error", hideLightboxLoading);

@@ -1,0 +1,359 @@
+:root {
+  --bg: #08121e;
+  --bg-soft: #102236;
+  --card: #0f1f32;
+  --line: #28435d;
+  --text: #f2f6fb;
+  --muted: #aac0d4;
+  --accent: #f47b20;
+  --accent-2: #1ac9b5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Sora", "Segoe UI", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(1200px 600px at 10% -10%, #1c3f5a 0%, transparent 65%),
+    radial-gradient(900px 500px at 100% 0%, #2a3122 0%, transparent 70%),
+    var(--bg);
+  min-height: 100vh;
+}
+
+.ambient {
+  position: fixed;
+  pointer-events: none;
+  z-index: -1;
+  border-radius: 999px;
+  filter: blur(60px);
+  opacity: 0.32;
+}
+
+.ambient-a {
+  width: 28rem;
+  height: 28rem;
+  background: #f47b20;
+  top: -12rem;
+  right: -8rem;
+}
+
+.ambient-b {
+  width: 24rem;
+  height: 24rem;
+  background: #1ac9b5;
+  left: -12rem;
+  bottom: 10vh;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem clamp(1rem, 3vw, 3rem);
+  backdrop-filter: blur(12px);
+  background: color-mix(in srgb, var(--bg) 75%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 75%, transparent);
+}
+
+.brand {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.site-nav {
+  display: flex;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+}
+
+.site-nav a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.site-nav a:hover {
+  color: var(--text);
+}
+
+main {
+  width: min(1120px, 100% - 2rem);
+  margin: 0 auto;
+  padding-bottom: 4rem;
+}
+
+.hero {
+  padding: clamp(3rem, 8vh, 7rem) 0 3rem;
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--accent-2);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0.8rem 0 0;
+  font-size: clamp(2rem, 6vw, 4rem);
+  line-height: 1.06;
+}
+
+.lead {
+  margin: 1.2rem 0 0;
+  max-width: 70ch;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.hero-actions {
+  margin-top: 1.7rem;
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.78rem 1rem;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.btn-primary {
+  color: #151515;
+  background: var(--accent);
+}
+
+.btn-secondary {
+  color: var(--text);
+  border: 1px solid var(--line);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.9rem;
+  list-style: none;
+  margin: 1.8rem 0 0;
+  padding: 0;
+}
+
+.stats li {
+  border: 1px solid var(--line);
+  border-radius: 0.9rem;
+  padding: 0.8rem 0.9rem;
+  color: var(--muted);
+  background: color-mix(in srgb, var(--card) 90%, transparent);
+}
+
+.stats span {
+  display: block;
+  color: var(--text);
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+
+.section {
+  margin-top: 3.2rem;
+}
+
+h2 {
+  margin: 0;
+  font-size: clamp(1.35rem, 3vw, 2rem);
+}
+
+.timeline {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.timeline-item {
+  background: color-mix(in srgb, var(--card) 92%, transparent);
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.timeline-meta {
+  margin: 0 0 0.4rem;
+  color: var(--accent-2);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.82rem;
+}
+
+.timeline-item h3 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.timeline-role {
+  margin: 0.4rem 0 0.7rem;
+  color: var(--muted);
+  font-size: 0.93rem;
+}
+
+.timeline-item p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.skill-grid {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.9rem;
+}
+
+.skill-card {
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  padding: 1rem;
+  background: color-mix(in srgb, var(--card) 92%, transparent);
+}
+
+.skill-card h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1rem;
+}
+
+.skill-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.project-list {
+  margin-top: 1rem;
+  display: grid;
+  gap: 1.1rem;
+}
+
+.project-card {
+  border: 1px solid var(--line);
+  border-radius: 1.1rem;
+  padding: 1rem;
+  background:
+    linear-gradient(160deg, color-mix(in srgb, var(--card) 95%, transparent), color-mix(in srgb, #2f2a1c 20%, var(--card)));
+}
+
+.project-kicker {
+  margin: 0;
+  color: var(--accent);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.project-card h3 {
+  margin: 0.45rem 0 0;
+}
+
+.project-card p {
+  margin: 0.7rem 0 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.project-text {
+  border-style: dashed;
+}
+
+.gallery {
+  margin-top: 1rem;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(240px, 1fr);
+  gap: 0.7rem;
+  overflow-x: auto;
+  padding-bottom: 0.3rem;
+  scroll-snap-type: x mandatory;
+}
+
+.gallery img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  border-radius: 0.8rem;
+  border: 1px solid color-mix(in srgb, var(--line) 80%, transparent);
+  scroll-snap-align: start;
+}
+
+.edu-grid {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.8rem;
+}
+
+.edu-grid article {
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 0.9rem;
+  background: color-mix(in srgb, var(--card) 90%, transparent);
+}
+
+.edu-grid h3 {
+  margin: 0;
+  font-size: 0.98rem;
+}
+
+.edu-grid p {
+  margin: 0.5rem 0 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.site-footer {
+  padding: 2.6rem 1rem 3rem;
+  color: var(--muted);
+  text-align: center;
+  border-top: 1px solid color-mix(in srgb, var(--line) 75%, transparent);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 700px) {
+  .site-header {
+    gap: 0.7rem;
+  }
+
+  .site-nav {
+    gap: 0.6rem;
+  }
+
+  .site-nav a {
+    font-size: 0.82rem;
+  }
+}

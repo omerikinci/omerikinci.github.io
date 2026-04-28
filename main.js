@@ -1,4 +1,4 @@
-const sections = document.querySelectorAll(".reveal");
+﻿const sections = document.querySelectorAll(".reveal");
 
 const observer = new IntersectionObserver(
   (entries) => {
@@ -57,7 +57,7 @@ function updateLightboxView() {
   if (lightboxLoader) lightboxLoader.hidden = false;
 
   lightboxImage.src = fullSrc;
-  lightboxImage.alt = active.alt || "Proje görseli";
+  lightboxImage.alt = active.alt || "Proje gorseli";
   lightboxCaption.textContent = active.alt || "";
   lightboxCounter.textContent = `${lightboxState.index + 1} / ${group.length}`;
 
@@ -128,3 +128,29 @@ lightboxPrev.addEventListener("click", () => stepLightbox(-1));
 lightboxNext.addEventListener("click", () => stepLightbox(1));
 lightboxImage.addEventListener("load", hideLightboxLoading);
 lightboxImage.addEventListener("error", hideLightboxLoading);
+
+const projectCards = Array.from(document.querySelectorAll(".project-card[data-project-url]"));
+
+function openProjectPage(card) {
+  const url = card.dataset.projectUrl;
+  if (!url) return;
+  window.open(url, "_blank", "noopener");
+}
+
+projectCards.forEach((card) => {
+  card.tabIndex = 0;
+  card.setAttribute("role", "link");
+
+  card.addEventListener("click", (event) => {
+    if (!(event.target instanceof Element)) return;
+    if (event.target.closest("a, button, iframe, .gallery, .project-video-wrap")) return;
+    openProjectPage(card);
+  });
+
+  card.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      openProjectPage(card);
+    }
+  });
+});

@@ -1,28 +1,27 @@
 <!doctype html>
 <html lang="tr">
   <head>
-      <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-1KV6KF3EGN"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1KV6KF3EGN"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-1KV6KF3EGN');
+    </script>
 
-  gtag('config', 'G-1KV6KF3EGN');
-</script>
-
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-WB5RRHJZ');</script>
-<!-- End Google Tag Manager -->
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-WB5RRHJZ');</script>
+    <!-- End Google Tag Manager -->
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Elektronik Kör Yük Cihazı | Proje Detayı</title>
-    <meta name="description" content="Elektronik kör yük proje detayı.">
+    <title>Elektronik Kör Yük V1 | Proje Detayı</title>
+    <meta name="description" content="Elektronik kör yük V1 geliştirme süreci, PCB, kasa ve osiloskop ölçüm görselleri.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -30,19 +29,142 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB5RRHJZ"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
- 
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB5RRHJZ"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
     <main class="section" style="width:min(980px,100% - 2rem);margin:0 auto;padding:3rem 0;">
       <a class="project-open-link" href="../index.html#projeler">← Projelere Dön</a>
-      <h1>Elektronik Kör Yük Cihazı</h1>
-      <p class="lead">Bu sayfa hazır. Proje metinlerini paylaştığında burada detaylı içerik olarak yayınlayacağım.</p>
-      <article class="project-card" style="margin-top:1rem;">
-        <h2>Yer Tutucu Alanlar</h2>
-        <p>Tasarım yaklaşımı, V2 şema notları, test senaryoları, karşılaşılan sorunlar ve çözüm adımları eklenecek.</p>
-      </article>
-    </main>
-  </body>
-  </html>
+      <h1>Elektronik Kör Yük V1</h1>
+      <p class="lead">
+        Var olan elektronik kör yük prototip cihazının V1 versiyonunu geliştirdim.
+        Bu çalışma kapsamında kasa yerleşimi, PCB uygulaması, test bağlantıları ve
+        osiloskopla sinyal takibi üzerinde iyileştirmeler yaptım.
+      </p>
 
+      <article class="project-card project-detail-text" style="margin-top:1rem;">
+        <h2>Geliştirme Süreci</h2>
+        <p>Elektronik kör yük cihazının ilk stabil versiyonu olan V1'i tamamladım.</p>
+        <p>Bu versiyondan önce bir prototip cihaz ürettim. Prototip üzerinde testler gerçekleştirdim, karşılaştığım problemleri not aldım ve V1 tasarımına bu hataları düzeltecek şekilde başladım.</p>
+        <p>Projenin şema ve PCB tasarımını KiCad üzerinde hazırladım. Komponent yerleşimi, güç ve kontrol katlarının ayrılması, test noktaları ve rework yapılabilirlik gibi detayları PCB tasarım sürecinde dikkate aldım.</p>
+        <p>Cihazın kasasını ise Blender üzerinde modelledim ve 3D yazıcıda bastım. Kasa tasarımında LCD ekran, fan, güç girişi, banana soketler, butonlar ve bağlantı noktalarının yerleşimini dikkate alarak elektronik tasarımla uyumlu bir mekanik yapı oluşturmaya çalıştım.</p>
+        <p>Mikrodenetleyici tarafında ATmega328P yerine daha uygun maliyetli, stabil, güçlü ve hızlı bir seçenek olan STM32G030F6P6TR kullandım.</p>
+        <p>Prototip cihazda kullandığım yarı analog, yarı dijital çalışma mantığını V1 cihazımda da korudum. Analog kontrol yapısının çalışma karakterini stabil bulduğum için bu yaklaşımı kullanmaya devam ettim.</p>
+        <p>Güç katında tek MOSFET yerine, lineer kullanımda daha iyi SOA değerlerine sahip 4 adet IRFP260N MOSFET tercih ettim. Bu MOSFET'leri lineer bölgede sürebilmek için prototip cihazda da kullandığım LM358 op-amp yapısını, her MOSFET için ayrı bir op-amp olacak şekilde tasarladım.</p>
+        <p>MOSFET'lerin shunt dirençleri üzerindeki gerilimi doğrudan STM32 ADC pinleriyle okumak yerine, 16-bit çözünürlük sağlayan ADS1115 harici ADC ile ölçtüm. Böylece anlık akım ölçümlerinde daha yüksek çözünürlük elde etmeyi hedefledim.</p>
+        <p>Güç, kontrol ve ölçüm katlarının ihtiyaç duyduğu farklı besleme seviyeleri için kart üzerinde birden fazla regülatör yapısı kullandım; regülatör çevresindeki filtreleme elemanlarını datasheet önerilerini dikkate alarak yerleştirdim.</p>
+        <p>Elektriksel gürültüyü azaltmak için güç katı ile kontrol katı arasında fiziksel boşluk bıraktım. Osiloskop ölçümlerinde anahtarlamalı regülatörlerden çıkan sinyallerin doğru ve ideal seviyelerde olduğunu doğruladım.</p>
+        <p>Bunların dışında cihazın güvenilir çalışması için küçük ama önemli birçok yardımcı devre ve yapı da tasarıma dahil edildi.</p>
+        <p>İlk kart olduğu için rework işlemlerini daha kolay yapabilmek adına pasif komponentlerde ağırlıklı olarak 0805 kılıf boyutunu tercih ettim. Sonraki stabil revizyonlarda 0603 ve daha küçük kılıf boyutları kullanmayı düşünüyorum.</p>
+        <p>Elbette süreç tamamen sorunsuz ilerlemedi. Prototip cihazda bulunmayan ters polarite korumasını V1'e eklemek istedim. İlk tasarımda tek P-Channel MOSFET ile ters polarite koruma devresi kurdum ve test ettim. Ancak gözden kaçırdığım bir durum vardı: Tek P-Channel MOSFET bazı senaryolar için yeterli olsa da içeriden gelen ters akımı engelleyemiyordu. IRFP260N MOSFET'ler kapalı olsa bile ters akım body diyot üzerinden geçerek girişe bağlı güç kaynağını kısa devre durumuna düşürüyordu.</p>
+        <p>Bu problemi çözmek için güç giriş bloğunu Back-to-Back P-Channel MOSFET yapısına geçirmek üzere PCB üzerinde rework işlemi gerçekleştirdim.</p>
+        <p>Rework sonrasında korumalı güç girişi 8V ve altındaki gerilimlerde koruma MOSFET'lerini yarı açık bölgede bıraktığı için ciddi ısınmaya sebep oldu. Bu nedenle sonraki PCB revizyonunda güç giriş bloğunu ideal diyot kontrolcüsü ve düşük RDS(on) değerine sahip iki adet N-Channel Back-to-Back MOSFET yapısına göre yeniden tasarlamayı planlıyorum.</p>
+        <p>Ayrıca iki adet P-Channel Back-to-Back MOSFET yapısı nedeniyle hedeflediğim 200W test gücünde koruma MOSFET'leri tehlikeli seviyede ısındı. Bu yüzden cihazı güvenli çalışma için 150W güç ile sınırlandırdım.</p>
+        <p>Yazılım tarafında ise yapay zekadan destek alarak RST tuşu ile yük çekimini açıp kapatma, aşırı akım uyarısı, ters polarite bildirimi, sıcaklık takibi ve fan kontrolü gibi kontrol, koruma ve izleme fonksiyonlarını geliştirdim.</p>
+        <p>V2 revizyonunda cihazı daha farklı ve işlevsel özelliklerle geliştirmeyi, aynı zamanda daha yüksek güç kapasitesine sahip bir yapı tasarlamayı hedefliyorum.</p>
+        <p>Sonuç olarak bu proje benim için güç elektroniği, ölçüm, PCB tasarımı, mekanik tasarım, rework ve hata analizi konularında ciddi şekilde öğretici ve tecrübe kazandıran bir çalışma oldu.</p>
+      </article>
+
+      <section class="section">
+        <h2>Video</h2>
+        <div class="project-video-wrap">
+          <iframe
+            class="project-video project-video-embed"
+            src="https://www.youtube.com/embed/NEgKRGtt83c?rel=0&modestbranding=1"
+            title="Kör Yük Proje Videosu"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </section>
+
+      <section class="section project-gallery-section">
+        <h2>V1 Fotoğrafları</h2>
+
+        <div class="gallery-group">
+          <h3>V1 PCB</h3>
+          <div class="gallery" aria-label="Elektronik kör yük V1 PCB fotoğrafları">
+            <img src="../assets/images/thumbs/projects/electronic-dummy-load-v1/v1-pcb-top-landscape.jpg" data-full="../assets/images/projects/electronic-dummy-load-v1/v1-pcb-top-landscape.jpg" alt="Elektronik kör yük V1 PCB üst yüzey montajı" loading="lazy">
+            <img src="../assets/images/thumbs/projects/electronic-dummy-load-v1/v1-pcb-bottom-landscape.jpg" data-full="../assets/images/projects/electronic-dummy-load-v1/v1-pcb-bottom-landscape.jpg" alt="Elektronik kör yük V1 PCB alt yüzey montajı" loading="lazy">
+            <img src="../assets/images/thumbs/projects/electronic-dummy-load-v1/v1-pcb-assembly-3.jpg" data-full="../assets/images/projects/electronic-dummy-load-v1/v1-pcb-assembly-3.jpg" alt="Elektronik kör yük V1 PCB montajı üçüncü görünüm" loading="lazy">
+            <img src="../assets/images/thumbs/projects/electronic-dummy-load-v1/v1-pcb-test-1-landscape.jpg" data-full="../assets/images/projects/electronic-dummy-load-v1/v1-pcb-test-1-landscape.jpg" alt="Elektronik kör yük V1 PCB test bağlantısı birinci görünüm" loading="lazy">
+            <img src="../assets/images/thumbs/projects/electronic-dummy-load-v1/v1-pcb-test-2-landscape.jpg" data-full="../assets/images/projects/electronic-dummy-load-v1/v1-pcb-test-2-landscape.jpg" alt="Elektronik kör yük V1 PCB test bağlantısı ikinci görünüm" loading="lazy">
+            <img src="../assets/images/thumbs/projects/electronic-dummy-load-v1/v1-pcb-design-1.png" data-full="../assets/images/projects/electronic-dummy-load-v1/v1-pcb-design-1.png" alt="Elektronik kör yük V1 PCB tasarım ekranı birinci görünüm" loading="lazy">
+            <img src="../assets/images/thumbs/projects/electronic-dummy-load-v1/v1-pcb-design-2.png" data-full="../assets/images/projects/electronic-dummy-load-v1/v1-pcb-design-2.png" alt="Elektronik kör yük V1 PCB tasarım ekranı ikinci görünüm" loading="lazy">
+            <img src="../assets/images/thumbs/projects/electronic-dummy-load-v1/v1-pcb-design-3.png" data-full="../assets/images/projects/electronic-dummy-load-v1/v1-pcb-design-3.png" alt="Elektronik kör yük V1 PCB tasarım ekranı üçüncü görünüm" loading="lazy">
+            <img src="../assets/images/thumbs/projects/electronic-dummy-load-v1/v1-pcb-design-4.png" data-full="../assets/images/projects/electronic-dummy-load-v1/v1-pcb-design-4.png" alt="Elektronik kör yük V1 PCB tasarım ekranı dördüncü görünüm" loading="lazy">
+          </div>
+        </div>
+
+        <div class="gallery-group">
+          <h3>V1 Osiloskop Görüntüleri</h3>
+          <div class="gallery" aria-label="Elektronik kör yük V1 osiloskop görüntüleri">
+            <img src="../assets/images/thumbs/projects/electronic-dummy-load-v1/v1-scope-i2c.png" data-full="../assets/images/projects/electronic-dummy-load-v1/v1-scope-i2c.png" alt="Elektronik kör yük V1 I2C osiloskop ölçümü" loading="lazy">
+            <img src="../assets/images/thumbs/projects/electronic-dummy-load-v1/v1-regulator-before-coil.png" data-full="../assets/images/projects/electronic-dummy-load-v1/v1-regulator-before-coil.png" alt="Elektronik kör yük V1 regülatör bobin öncesi ölçüm" loading="lazy">
+            <img src="../assets/images/thumbs/projects/electronic-dummy-load-v1/v1-regulator-output.png" data-full="../assets/images/projects/electronic-dummy-load-v1/v1-regulator-output.png" alt="Elektronik kör yük V1 regülatör çıkışı ölçüm" loading="lazy">
+            <img src="../assets/images/thumbs/projects/electronic-dummy-load-v1/v1-scope-test-1.jpg" data-full="../assets/images/projects/electronic-dummy-load-v1/v1-scope-test-1.jpg" alt="Elektronik kör yük V1 osiloskop test düzeneği birinci görünüm" loading="lazy">
+            <img src="../assets/images/thumbs/projects/electronic-dummy-load-v1/v1-scope-test-2.jpg" data-full="../assets/images/projects/electronic-dummy-load-v1/v1-scope-test-2.jpg" alt="Elektronik kör yük V1 osiloskop test düzeneği ikinci görünüm" loading="lazy">
+            <img src="../assets/images/thumbs/projects/electronic-dummy-load-v1/v1-scope-test-3.jpg" data-full="../assets/images/projects/electronic-dummy-load-v1/v1-scope-test-3.jpg" alt="Elektronik kör yük V1 osiloskop test düzeneği üçüncü görünüm" loading="lazy">
+            <img src="../assets/images/thumbs/projects/electronic-dummy-load-v1/v1-scope-test-4.jpg" data-full="../assets/images/projects/electronic-dummy-load-v1/v1-scope-test-4.jpg" alt="Elektronik kör yük V1 osiloskop test düzeneği dördüncü görünüm" loading="lazy">
+          </div>
+        </div>
+
+        <div class="gallery-group">
+          <h3>V1 Test Fotoğrafları</h3>
+          <div class="gallery" aria-label="Elektronik kör yük V1 test fotoğrafları">
+            <img src="../assets/images/thumbs/projects/electronic-dummy-load-v1/v1-test-initial-1.jpg" data-full="../assets/images/projects/electronic-dummy-load-v1/v1-test-initial-1.jpg" alt="Elektronik kör yük V1 ilk test görünümü" loading="lazy">
+            <img src="../assets/images/thumbs/projects/electronic-dummy-load-v1/v1-test-initial-2.jpg" data-full="../assets/images/projects/electronic-dummy-load-v1/v1-test-initial-2.jpg" alt="Elektronik kör yük V1 ikinci test görünümü" loading="lazy">
+            <img src="../assets/images/thumbs/projects/electronic-dummy-load-v1/v1-test-150w-load.jpg" data-full="../assets/images/projects/electronic-dummy-load-v1/v1-test-150w-load.jpg" alt="Elektronik kör yük V1 150W yük testi" loading="lazy">
+          </div>
+        </div>
+
+        <div class="gallery-group">
+          <h3>V1 Kasa</h3>
+          <div class="gallery" aria-label="Elektronik kör yük V1 kasa fotoğrafları">
+            <img src="../assets/images/thumbs/projects/electronic-dummy-load-v1/v1-case-front-latest.jpg" data-full="../assets/images/projects/electronic-dummy-load-v1/v1-case-front-latest.jpg" alt="Elektronik kör yük V1 yeni kasa ön görünüm" loading="lazy">
+            <img src="../assets/images/thumbs/projects/electronic-dummy-load-v1/v1-case-top-new-upright-cw.jpg" data-full="../assets/images/projects/electronic-dummy-load-v1/v1-case-top-new-upright-cw.jpg" alt="Elektronik kör yük V1 yeni kasa üst görünüm" loading="lazy">
+            <img src="../assets/images/thumbs/projects/electronic-dummy-load-v1/v1-case-side-new.jpg" data-full="../assets/images/projects/electronic-dummy-load-v1/v1-case-side-new.jpg" alt="Elektronik kör yük V1 yeni kasa yan görünüm" loading="lazy">
+            <img src="../assets/images/thumbs/projects/electronic-dummy-load-v1/v1-case-rear-new-upright-cw.jpg" data-full="../assets/images/projects/electronic-dummy-load-v1/v1-case-rear-new-upright-cw.jpg" alt="Elektronik kör yük V1 yeni kasa arka görünüm" loading="lazy">
+            <img src="../assets/images/thumbs/projects/electronic-dummy-load-v1/v1-case-angle.jpg" data-full="../assets/images/projects/electronic-dummy-load-v1/v1-case-angle.jpg" alt="Elektronik kör yük V1 kasa açılı görünüm" loading="lazy">
+            <img src="../assets/images/thumbs/projects/electronic-dummy-load-v1/v1-case-side.jpg" data-full="../assets/images/projects/electronic-dummy-load-v1/v1-case-side.jpg" alt="Elektronik kör yük V1 kasa yan görünüm" loading="lazy">
+            <img src="../assets/images/thumbs/projects/electronic-dummy-load-v1/v1-case-top.jpg" data-full="../assets/images/projects/electronic-dummy-load-v1/v1-case-top.jpg" alt="Elektronik kör yük V1 kasa üst görünüm" loading="lazy">
+            <img src="../assets/images/thumbs/projects/electronic-dummy-load-v1/v1-case-rear.jpg" data-full="../assets/images/projects/electronic-dummy-load-v1/v1-case-rear.jpg" alt="Elektronik kör yük V1 kasa arka görünüm" loading="lazy">
+            <img src="../assets/images/thumbs/projects/electronic-dummy-load-v1/v1-case-internal-1-landscape.jpg" data-full="../assets/images/projects/electronic-dummy-load-v1/v1-case-internal-1-landscape.jpg" alt="Elektronik kör yük V1 iç yerleşim birinci görünüm" loading="lazy">
+            <img src="../assets/images/thumbs/projects/electronic-dummy-load-v1/v1-case-internal-2-landscape.jpg" data-full="../assets/images/projects/electronic-dummy-load-v1/v1-case-internal-2-landscape.jpg" alt="Elektronik kör yük V1 iç yerleşim ikinci görünüm" loading="lazy">
+            <img src="../assets/images/thumbs/projects/electronic-dummy-load-v1/v1-case-internal-3-landscape.jpg" data-full="../assets/images/projects/electronic-dummy-load-v1/v1-case-internal-3-landscape.jpg" alt="Elektronik kör yük V1 iç yerleşim üçüncü görünüm" loading="lazy">
+          </div>
+        </div>
+
+        <div class="gallery-group">
+          <h3>Prototip Cihaz</h3>
+          <div class="gallery" aria-label="Elektronik kör yük prototip cihaz fotoğrafları">
+            <img src="../assets/images/thumbs/projects/electronic-dummy-load-v1/prototype-v1-side-by-side.jpg" data-full="../assets/images/projects/electronic-dummy-load-v1/prototype-v1-side-by-side.jpg" alt="Elektronik kör yük prototip ve V1 cihaz yan yana" loading="lazy">
+            <img src="../assets/images/thumbs/projects/electronic-dummy-load-v1/prototype-device-1.jpg" data-full="../assets/images/projects/electronic-dummy-load-v1/prototype-device-1.jpg" alt="Elektronik kör yük prototip cihaz birinci görünüm" loading="lazy">
+            <img src="../assets/images/thumbs/projects/electronic-dummy-load-v1/prototype-device-2.jpg" data-full="../assets/images/projects/electronic-dummy-load-v1/prototype-device-2.jpg" alt="Elektronik kör yük prototip cihaz ikinci görünüm" loading="lazy">
+            <img src="../assets/images/thumbs/projects/electronic-dummy-load-v1/prototype-device-3-upright-cw.jpg" data-full="../assets/images/projects/electronic-dummy-load-v1/prototype-device-3-upright-cw.jpg" alt="Elektronik kör yük prototip cihaz üçüncü görünüm" loading="lazy">
+            <img src="../assets/images/thumbs/projects/electronic-dummy-load-v1/prototype-extra-1.jpg" data-full="../assets/images/projects/electronic-dummy-load-v1/prototype-extra-1.jpg" alt="Elektronik kör yük prototip cihaz ek görünüm" loading="lazy">
+            <img src="../assets/images/thumbs/projects/electronic-dummy-load-v1/prototype-extra-2.png" data-full="../assets/images/projects/electronic-dummy-load-v1/prototype-extra-2.png" alt="Elektronik kör yük prototip cihaz ek ekran görüntüsü" loading="lazy">
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="lightbox" id="lightbox" hidden aria-hidden="true" role="dialog" aria-label="Proje galeri görüntüleyici">
+      <button class="lightbox-close" type="button" id="lightboxClose" aria-label="Galeri kapat">Kapat</button>
+      <button class="lightbox-nav lightbox-prev" type="button" id="lightboxPrev" aria-label="Önceki görsel">&#10094;</button>
+      <figure class="lightbox-figure">
+        <div class="lightbox-loader" id="lightboxLoader" aria-hidden="true">
+          <span class="lightbox-spinner"></span>
+          <span>Yükleniyor...</span>
+        </div>
+        <img id="lightboxImage" src="" alt="">
+        <figcaption id="lightboxCaption"></figcaption>
+      </figure>
+      <button class="lightbox-nav lightbox-next" type="button" id="lightboxNext" aria-label="Sonraki görsel">&#10095;</button>
+      <p class="lightbox-counter" id="lightboxCounter"></p>
+    </div>
+
+    <script src="../main.js"></script>
+  </body>
+</html>

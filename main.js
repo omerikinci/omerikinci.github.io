@@ -39,8 +39,38 @@ const lightboxNext = document.getElementById("lightboxNext");
 const lightboxState = {
   group: 0,
   index: 0,
-  previousFocus: null
+  previousFocus: null,
+  scale: 1,
+  translateX: 0,
+  translateY: 0,
+  isPanning: false,
+  panStartX: 0,
+  panStartY: 0,
+  panOriginX: 0,
+  panOriginY: 0
 };
+
+function applyLightboxTransform() {
+  lightboxImage.style.transform = `translate3d(${lightboxState.translateX}px, ${lightboxState.translateY}px, 0) scale(${lightboxState.scale})`;
+  lightbox.classList.toggle("is-zoomed", lightboxState.scale > 1);
+}
+
+function resetLightboxZoom() {
+  lightboxState.scale = 1;
+  lightboxState.translateX = 0;
+  lightboxState.translateY = 0;
+  lightboxState.isPanning = false;
+  applyLightboxTransform();
+}
+
+function setLightboxZoom(nextScale) {
+  lightboxState.scale = Math.min(4, Math.max(1, nextScale));
+  if (lightboxState.scale === 1) {
+    lightboxState.translateX = 0;
+    lightboxState.translateY = 0;
+  }
+  applyLightboxTransform();
+}
 
 function hideLightboxLoading() {
   lightbox.classList.remove("is-loading");
@@ -55,6 +85,7 @@ function updateLightboxView() {
   const fullSrc = active.dataset.full || active.currentSrc || active.src;
   lightbox.classList.add("is-loading");
   if (lightboxLoader) lightboxLoader.hidden = false;
+  resetLightboxZoom();
 
   lightboxImage.src = fullSrc;
   lightboxImage.alt = active.alt || "Proje gorseli";
@@ -82,6 +113,7 @@ function closeLightbox() {
   lightbox.setAttribute("aria-hidden", "true");
   document.body.classList.remove("no-scroll");
   hideLightboxLoading();
+  resetLightboxZoom();
   if (lightboxState.previousFocus && lightboxState.previousFocus.focus) {
     lightboxState.previousFocus.focus();
   }
@@ -121,6 +153,9 @@ document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") closeLightbox();
   if (event.key === "ArrowLeft") stepLightbox(-1);
   if (event.key === "ArrowRight") stepLightbox(1);
+  if (event.key === "+" || event.key === "=") setLightboxZoom(lightboxState.scale + 0.35);
+  if (event.key === "-" || event.key === "_") setLightboxZoom(lightboxState.scale - 0.35);
+  if (event.key === "0") resetLightboxZoom();
 });
 
 lightboxClose.addEventListener("click", closeLightbox);
@@ -129,12 +164,60 @@ lightboxNext.addEventListener("click", () => stepLightbox(1));
 lightboxImage.addEventListener("load", hideLightboxLoading);
 lightboxImage.addEventListener("error", hideLightboxLoading);
 
+lightboxImage.addEventListener("dblclick", () => {
+  if (lightboxState.scale > 1) {
+    resetLightboxZoom();
+  } else {
+    setLightboxZoom(2.2);
+  }
+});
+
+lightboxImage.addEventListener(
+  "wheel",
+  (event) => {
+    if (lightbox.hidden) return;
+    event.preventDefault();
+    const direction = event.deltaY > 0 ? -1 : 1;
+    setLightboxZoom(lightboxState.scale + direction * 0.25);
+  },
+  { passive: false }
+);
+
+lightboxImage.addEventListener("pointerdown", (event) => {
+  if (lightboxState.scale === 1) return;
+  event.preventDefault();
+  lightboxState.isPanning = true;
+  lightboxState.panStartX = event.clientX;
+  lightboxState.panStartY = event.clientY;
+  lightboxState.panOriginX = lightboxState.translateX;
+  lightboxState.panOriginY = lightboxState.translateY;
+  lightboxImage.setPointerCapture(event.pointerId);
+});
+
+lightboxImage.addEventListener("pointermove", (event) => {
+  if (!lightboxState.isPanning) return;
+  lightboxState.translateX = lightboxState.panOriginX + event.clientX - lightboxState.panStartX;
+  lightboxState.translateY = lightboxState.panOriginY + event.clientY - lightboxState.panStartY;
+  applyLightboxTransform();
+});
+
+function endLightboxPan(event) {
+  if (!lightboxState.isPanning) return;
+  lightboxState.isPanning = false;
+  if (lightboxImage.hasPointerCapture(event.pointerId)) {
+    lightboxImage.releasePointerCapture(event.pointerId);
+  }
+}
+
+lightboxImage.addEventListener("pointerup", endLightboxPan);
+lightboxImage.addEventListener("pointercancel", endLightboxPan);
+
 const projectCards = Array.from(document.querySelectorAll(".project-card[data-project-url]"));
 
 function openProjectPage(card) {
   const url = card.dataset.projectUrl;
   if (!url) return;
-  window.open(url, "_blank", "noopener");
+  window.location.href = url;
 }
 
 projectCards.forEach((card) => {

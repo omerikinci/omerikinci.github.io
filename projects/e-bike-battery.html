@@ -1,23 +1,22 @@
 <!doctype html>
 <html lang="tr">
   <head>
-      <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-1KV6KF3EGN"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1KV6KF3EGN"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-1KV6KF3EGN');
+    </script>
 
-  gtag('config', 'G-1KV6KF3EGN');
-</script>
-
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-WB5RRHJZ');</script>
-<!-- End Google Tag Manager -->
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-WB5RRHJZ');</script>
+    <!-- End Google Tag Manager -->
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,19 +29,49 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB5RRHJZ"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
- 
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB5RRHJZ"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
     <main class="section" style="width:min(980px,100% - 2rem);margin:0 auto;padding:3rem 0;">
       <a class="project-open-link" href="../index.html#projeler">← Projelere Dön</a>
       <h1>E-Bike Batarya</h1>
-      <p class="lead">Bu sayfa hazır. Proje metinlerini paylaştığında burada detaylı içerik olarak yayınlayacağım.</p>
-      <article class="project-card" style="margin-top:1rem;">
-        <h2>Yer Tutucu Alanlar</h2>
-        <p>Hücre seçimi, 10S2P paketleme süreci, BMS bağlantıları, test ölçümleri ve güvenlik notları eklenecek.</p>
-      </article>
-    </main>
-  </body>
-  </html>
+      <p class="lead">Aspilsan 18650 hücrelerle hazırladığım 10S2P yapıda e-bike batarya paketi.</p>
 
+      <article class="project-card project-detail-text" style="margin-top:1rem;">
+        <h2>Proje Özeti</h2>
+        <p>Bu projede Aspilsan 18650 hücreler kullanarak 10S2P yapıda bir e-bike batarya paketi hazırladım.</p>
+        <p>Batarya paketinde hücre dizilimi, seri-paralel bağlantı yapısı, 20A BMS entegrasyonu ve paketleme adımları üzerinde çalıştım.</p>
+        <p>Bu çalışma sayesinde batarya paketleme, BMS bağlantısı, hücre balanslama ve güvenli montaj konularında pratik deneyim kazandım.</p>
+      </article>
+
+      <section class="section">
+        <h2>Fotoğraflar</h2>
+        <div class="gallery" aria-label="E-Bike batarya fotoğrafları">
+          <img src="../assets/images/thumbs/projects/e-bike-battery/ebike-pack-top.jpg" data-full="../assets/images/projects/e-bike-battery/ebike-pack-top.jpg" alt="E-Bike batarya üst görünüm" loading="lazy">
+          <img src="../assets/images/thumbs/projects/e-bike-battery/ebike-pack-side.jpg" data-full="../assets/images/projects/e-bike-battery/ebike-pack-side.jpg" alt="E-Bike batarya yan görünüm" loading="lazy">
+          <img src="../assets/images/thumbs/projects/e-bike-battery/ebike-cell-layout.jpg" data-full="../assets/images/projects/e-bike-battery/ebike-cell-layout.jpg" alt="Batarya hücre düzeni" loading="lazy">
+          <img src="../assets/images/thumbs/projects/e-bike-battery/ebike-weld-closeup.jpg" data-full="../assets/images/projects/e-bike-battery/ebike-weld-closeup.jpg" alt="Batarya kaynak detayı" loading="lazy">
+          <img src="../assets/images/thumbs/projects/e-bike-battery/ebike-bms-layout.jpg" data-full="../assets/images/projects/e-bike-battery/ebike-bms-layout.jpg" alt="Batarya BMS yerleşimi" loading="lazy">
+        </div>
+      </section>
+    </main>
+
+    <div class="lightbox" id="lightbox" hidden aria-hidden="true" role="dialog" aria-label="Proje galeri görüntüleyici">
+      <button class="lightbox-close" type="button" id="lightboxClose" aria-label="Galeri kapat">Kapat</button>
+      <button class="lightbox-nav lightbox-prev" type="button" id="lightboxPrev" aria-label="Önceki görsel">&#10094;</button>
+      <figure class="lightbox-figure">
+        <div class="lightbox-loader" id="lightboxLoader" aria-hidden="true">
+          <span class="lightbox-spinner"></span>
+          <span>Yükleniyor...</span>
+        </div>
+        <img id="lightboxImage" src="" alt="">
+        <figcaption id="lightboxCaption"></figcaption>
+      </figure>
+      <button class="lightbox-nav lightbox-next" type="button" id="lightboxNext" aria-label="Sonraki görsel">&#10095;</button>
+      <p class="lightbox-counter" id="lightboxCounter"></p>
+    </div>
+
+    <script src="../main.js"></script>
+  </body>
+</html>

@@ -1,12 +1,14 @@
 :root {
-  --bg: #08121e;
-  --bg-soft: #102236;
-  --card: #0f1f32;
-  --line: #28435d;
-  --text: #f2f6fb;
-  --muted: #aac0d4;
-  --accent: #f47b20;
-  --accent-2: #1ac9b5;
+  --bg: #f7f7f4;
+  --bg-soft: #ececea;
+  --card: #ffffff;
+  --card-strong: #111111;
+  --line: #d7d7d2;
+  --line-strong: #151515;
+  --text: #111111;
+  --muted: #5f5f59;
+  --accent: #111111;
+  --accent-2: #3b3b36;
 }
 
 * {
@@ -22,75 +24,15 @@ body {
   font-family: "Sora", "Segoe UI", sans-serif;
   color: var(--text);
   background:
-    radial-gradient(1200px 600px at 10% -10%, #1c3f5a 0%, transparent 65%),
-    radial-gradient(900px 500px at 100% 0%, #2a3122 0%, transparent 70%),
+    linear-gradient(90deg, rgb(17 17 17 / 4%) 1px, transparent 1px),
+    linear-gradient(180deg, rgb(17 17 17 / 4%) 1px, transparent 1px),
     var(--bg);
+  background-size: 42px 42px;
   min-height: 100vh;
 }
 
 .no-scroll {
   overflow: hidden;
-}
-
-.ambient {
-  position: fixed;
-  pointer-events: none;
-  z-index: -1;
-  border-radius: 999px;
-  filter: blur(60px);
-  opacity: 0.32;
-}
-
-.ambient-a {
-  width: 28rem;
-  height: 28rem;
-  background: #f47b20;
-  top: -12rem;
-  right: -8rem;
-}
-
-.ambient-b {
-  width: 24rem;
-  height: 24rem;
-  background: #1ac9b5;
-  left: -12rem;
-  bottom: 10vh;
-}
-
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 20;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem clamp(1rem, 3vw, 3rem);
-  backdrop-filter: blur(12px);
-  background: color-mix(in srgb, var(--bg) 75%, transparent);
-  border-bottom: 1px solid color-mix(in srgb, var(--line) 75%, transparent);
-}
-
-.brand {
-  color: var(--text);
-  text-decoration: none;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-}
-
-.site-nav {
-  display: flex;
-  gap: 0.9rem;
-  flex-wrap: wrap;
-}
-
-.site-nav a {
-  color: var(--muted);
-  text-decoration: none;
-  font-size: 0.9rem;
-}
-
-.site-nav a:hover {
-  color: var(--text);
 }
 
 main {
@@ -100,7 +42,8 @@ main {
 }
 
 .hero {
-  padding: clamp(3rem, 8vh, 7rem) 0 3rem;
+  padding: clamp(2rem, 7vh, 5rem) 0 3rem;
+  border-bottom: 1px solid var(--line-strong);
 }
 
 .eyebrow {
@@ -116,6 +59,7 @@ h1 {
   margin: 0.8rem 0 0;
   font-size: clamp(2rem, 6vw, 4rem);
   line-height: 1.06;
+  letter-spacing: 0;
 }
 
 .lead {
@@ -137,14 +81,15 @@ h1 {
   align-items: center;
   justify-content: center;
   padding: 0.78rem 1rem;
-  border-radius: 999px;
+  border-radius: 8px;
   text-decoration: none;
   font-weight: 600;
 }
 
 .btn-primary {
-  color: #151515;
+  color: #ffffff;
   background: var(--accent);
+  border: 1px solid var(--accent);
 }
 
 .btn-secondary {
@@ -163,10 +108,10 @@ h1 {
 
 .stats li {
   border: 1px solid var(--line);
-  border-radius: 0.9rem;
+  border-radius: 8px;
   padding: 0.8rem 0.9rem;
   color: var(--muted);
-  background: color-mix(in srgb, var(--card) 90%, transparent);
+  background: var(--card);
 }
 
 .stats span {
@@ -179,11 +124,14 @@ h1 {
 
 .section {
   margin-top: 3.2rem;
+  padding-top: 0.2rem;
 }
 
 h2 {
   margin: 0;
   font-size: clamp(1.35rem, 3vw, 2rem);
+  padding-bottom: 0.55rem;
+  border-bottom: 1px solid var(--line-strong);
 }
 
 .timeline {
@@ -193,15 +141,15 @@ h2 {
 }
 
 .timeline-item {
-  background: color-mix(in srgb, var(--card) 92%, transparent);
+  background: var(--card);
   border: 1px solid var(--line);
-  border-radius: 1rem;
+  border-radius: 8px;
   padding: 1rem;
 }
 
 .timeline-meta {
   margin: 0 0 0.4rem;
-  color: var(--accent-2);
+  color: var(--accent);
   font-family: "IBM Plex Mono", monospace;
   font-size: 0.82rem;
 }
@@ -232,9 +180,9 @@ h2 {
 
 .skill-card {
   border: 1px solid var(--line);
-  border-radius: 1rem;
+  border-radius: 8px;
   padding: 1rem;
-  background: color-mix(in srgb, var(--card) 92%, transparent);
+  background: var(--card);
 }
 
 .skill-card h3 {
@@ -256,12 +204,11 @@ h2 {
 
 .project-card {
   border: 1px solid var(--line);
-  border-radius: 1.1rem;
+  border-radius: 8px;
   padding: 1rem;
   overflow: hidden;
-  transition: border-color 0.2s ease, transform 0.2s ease;
-  background:
-    linear-gradient(160deg, color-mix(in srgb, var(--card) 95%, transparent), color-mix(in srgb, #2f2a1c 20%, var(--card)));
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  background: var(--card);
 }
 
 .project-card[data-project-url] {
@@ -269,12 +216,14 @@ h2 {
 }
 
 .project-card[data-project-url]:hover {
-  border-color: color-mix(in srgb, var(--accent) 65%, var(--line));
+  border-color: var(--line-strong);
+  box-shadow: 6px 6px 0 var(--line-strong);
+  transform: translate(-2px, -2px);
 }
 
 .project-kicker {
   margin: 0;
-  color: var(--accent);
+  color: var(--accent-2);
   font-family: "IBM Plex Mono", monospace;
   font-size: 0.82rem;
   letter-spacing: 0.04em;
@@ -294,18 +243,61 @@ h2 {
 .project-open-link {
   display: inline-flex;
   margin-top: 0.85rem;
-  color: var(--accent-2);
+  color: var(--accent);
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 600;
+  border-bottom: 1px solid currentColor;
 }
 
 .project-open-link:hover {
-  text-decoration: underline;
+  text-decoration: none;
+  color: var(--muted);
 }
 
 .project-text {
   border-style: dashed;
+}
+
+.project-preview {
+  display: grid;
+  grid-template-columns: minmax(180px, 280px) 1fr;
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.project-preview-media {
+  min-width: 0;
+}
+
+.project-preview-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 170px;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--bg-soft);
+  filter: grayscale(100%);
+  transition: filter 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+
+.project-preview-img-contain {
+  object-fit: contain;
+  padding: 0.2rem;
+}
+
+.project-preview-body {
+  min-width: 0;
+  align-self: center;
+}
+
+.project-card:hover .project-preview-img {
+  filter: grayscale(0%);
+  border-color: var(--line-strong);
+  transform: translateY(-2px);
 }
 
 .gallery {
@@ -316,6 +308,19 @@ h2 {
   width: 100%;
 }
 
+.gallery-group {
+  margin-top: 1.6rem;
+}
+
+.gallery-group h3 {
+  margin: 0;
+  color: var(--text);
+  font-size: 1rem;
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
 .gallery img {
   display: block;
   width: 100%;
@@ -323,22 +328,29 @@ h2 {
   max-height: 220px;
   height: auto;
   object-fit: cover;
-  border-radius: 0.8rem;
-  border: 1px solid color-mix(in srgb, var(--line) 80%, transparent);
+  border-radius: 8px;
+  border: 1px solid var(--line);
   cursor: zoom-in;
   transition: transform 0.25s ease, border-color 0.25s ease;
+  filter: grayscale(100%);
+}
+
+.gallery img.gallery-img-contain {
+  object-fit: contain;
+  background: var(--bg-soft);
 }
 
 .gallery img:hover {
   transform: translateY(-2px);
-  border-color: color-mix(in srgb, var(--accent) 70%, var(--line));
+  border-color: var(--line-strong);
+  filter: grayscale(0%);
 }
 
 .project-video-wrap {
   margin-top: 1rem;
-  border: 1px solid color-mix(in srgb, var(--line) 80%, transparent);
-  border-radius: 0.9rem;
-  background: color-mix(in srgb, var(--card) 92%, transparent);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg-soft);
   padding: 0.7rem;
 }
 
@@ -346,7 +358,7 @@ h2 {
   display: block;
   width: 100%;
   max-height: 520px;
-  border-radius: 0.65rem;
+  border-radius: 6px;
   background: #000;
 }
 
@@ -366,7 +378,7 @@ h2 {
 }
 
 .video-note a {
-  color: var(--accent-2);
+  color: var(--accent);
 }
 
 .lightbox {
@@ -379,7 +391,7 @@ h2 {
   align-items: center;
   gap: 0.8rem;
   padding: clamp(0.8rem, 3vw, 2rem);
-  background: rgb(3 8 14 / 92%);
+  background: rgb(0 0 0 / 92%);
   backdrop-filter: blur(5px);
 }
 
@@ -393,19 +405,19 @@ h2 {
   justify-self: end;
   padding: 0.5rem 0.9rem;
   border: 1px solid var(--line);
-  background: color-mix(in srgb, var(--card) 95%, transparent);
-  color: var(--text);
-  border-radius: 999px;
+  background: #ffffff;
+  color: #111111;
+  border-radius: 8px;
   cursor: pointer;
 }
 
 .lightbox-nav {
   width: 2.4rem;
   height: 2.4rem;
-  border-radius: 999px;
+  border-radius: 8px;
   border: 1px solid var(--line);
-  background: color-mix(in srgb, var(--card) 95%, transparent);
-  color: var(--text);
+  background: #ffffff;
+  color: #111111;
   font-size: 1.25rem;
   cursor: pointer;
 }
@@ -431,6 +443,7 @@ h2 {
   display: grid;
   grid-template-rows: 1fr;
   gap: 0;
+  overflow: hidden;
 }
 
 .lightbox-figure img {
@@ -438,9 +451,23 @@ h2 {
   height: 100%;
   max-height: calc(100vh - 11rem);
   object-fit: contain;
-  border-radius: 0.8rem;
-  border: 1px solid color-mix(in srgb, var(--line) 85%, transparent);
+  border-radius: 8px;
+  border: 1px solid rgb(255 255 255 / 35%);
   background: rgb(0 0 0 / 30%);
+  cursor: zoom-in;
+  touch-action: none;
+  transform-origin: center;
+  transition: transform 0.18s ease;
+  user-select: none;
+  will-change: transform;
+}
+
+.lightbox.is-zoomed .lightbox-figure img {
+  cursor: grab;
+}
+
+.lightbox.is-zoomed .lightbox-figure img:active {
+  cursor: grabbing;
 }
 
 .lightbox-loader {
@@ -453,8 +480,8 @@ h2 {
   font-family: "IBM Plex Mono", monospace;
   font-size: 0.9rem;
   color: #f3f7ff;
-  background: rgb(8 14 24 / 78%);
-  border-radius: 0.8rem;
+  background: rgb(0 0 0 / 78%);
+  border-radius: 8px;
   z-index: 1;
 }
 
@@ -495,8 +522,8 @@ h2 {
 .edu-grid article {
   padding: 1rem;
   border: 1px solid var(--line);
-  border-radius: 0.9rem;
-  background: color-mix(in srgb, var(--card) 90%, transparent);
+  border-radius: 8px;
+  background: var(--card);
 }
 
 .edu-grid h3 {
@@ -514,7 +541,7 @@ h2 {
   padding: 2.6rem 1rem 3rem;
   color: var(--muted);
   text-align: center;
-  border-top: 1px solid color-mix(in srgb, var(--line) 75%, transparent);
+  border-top: 1px solid var(--line-strong);
 }
 
 .reveal {
@@ -529,16 +556,13 @@ h2 {
 }
 
 @media (max-width: 700px) {
-  .site-header {
-    gap: 0.7rem;
+  .project-preview {
+    grid-template-columns: 1fr;
   }
 
-  .site-nav {
-    gap: 0.6rem;
-  }
-
-  .site-nav a {
-    font-size: 0.82rem;
+  .project-preview-img {
+    height: auto;
+    min-height: 0;
   }
 
   .gallery {

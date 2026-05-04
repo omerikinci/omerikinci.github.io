@@ -44,10 +44,17 @@ const lightboxState = {
   translateX: 0,
   translateY: 0,
   isPanning: false,
+  isPinching: false,
   panStartX: 0,
   panStartY: 0,
   panOriginX: 0,
-  panOriginY: 0
+  panOriginY: 0,
+  pointers: new Map(),
+  pinchStartDistance: 0,
+  pinchStartScale: 1,
+  lastTapTime: 0,
+  lastTapX: 0,
+  lastTapY: 0
 };
 
 function applyLightboxTransform() {
@@ -60,6 +67,8 @@ function resetLightboxZoom() {
   lightboxState.translateX = 0;
   lightboxState.translateY = 0;
   lightboxState.isPanning = false;
+  lightboxState.isPinching = false;
+  lightboxState.pointers.clear();
   applyLightboxTransform();
 }
 
@@ -184,6 +193,22 @@ lightboxImage.addEventListener(
 );
 
 lightboxImage.addEventListener("pointerdown", (event) => {
+  lightboxState.pointers.set(event.pointerId, {
+    x: event.clientX,
+    y: event.clientY
+  });
+
+  if (lightboxState.pointers.size === 2) {
+    event.preventDefault();
+    const points = Array.from(lightboxState.pointers.values());
+    lightboxState.isPinching = true;
+    lightboxState.isPanning = false;
+    lightboxState.pinchStartDistance = Math.hypot(points[0].x - points[1].x, points[0].y - points[1].y);
+    lightboxState.pinchStartScale = lightboxState.scale;
+    lightboxImage.setPointerCapture(event.pointerId);
+    return;
+  }
+
   if (lightboxState.scale === 1) return;
   event.preventDefault();
   lightboxState.isPanning = true;
@@ -195,6 +220,23 @@ lightboxImage.addEventListener("pointerdown", (event) => {
 });
 
 lightboxImage.addEventListener("pointermove", (event) => {
+  if (lightboxState.pointers.has(event.pointerId)) {
+    lightboxState.pointers.set(event.pointerId, {
+      x: event.clientX,
+      y: event.clientY
+    });
+  }
+
+  if (lightboxState.isPinching && lightboxState.pointers.size >= 2) {
+    event.preventDefault();
+    const points = Array.from(lightboxState.pointers.values());
+    const distance = Math.hypot(points[0].x - points[1].x, points[0].y - points[1].y);
+    if (lightboxState.pinchStartDistance > 0) {
+      setLightboxZoom(lightboxState.pinchStartScale * (distance / lightboxState.pinchStartDistance));
+    }
+    return;
+  }
+
   if (!lightboxState.isPanning) return;
   lightboxState.translateX = lightboxState.panOriginX + event.clientX - lightboxState.panStartX;
   lightboxState.translateY = lightboxState.panOriginY + event.clientY - lightboxState.panStartY;
@@ -202,10 +244,31 @@ lightboxImage.addEventListener("pointermove", (event) => {
 });
 
 function endLightboxPan(event) {
-  if (!lightboxState.isPanning) return;
+  const wasPanning = lightboxState.isPanning;
+  const wasPinching = lightboxState.isPinching;
+  lightboxState.pointers.delete(event.pointerId);
   lightboxState.isPanning = false;
+  lightboxState.isPinching = lightboxState.pointers.size >= 2;
+
   if (lightboxImage.hasPointerCapture(event.pointerId)) {
     lightboxImage.releasePointerCapture(event.pointerId);
+  }
+
+  if (event.pointerType === "touch" && !wasPanning && !wasPinching && lightboxState.pointers.size === 0) {
+    const now = Date.now();
+    const tapDistance = Math.hypot(event.clientX - lightboxState.lastTapX, event.clientY - lightboxState.lastTapY);
+    if (now - lightboxState.lastTapTime < 300 && tapDistance < 28) {
+      if (lightboxState.scale > 1) {
+        resetLightboxZoom();
+      } else {
+        setLightboxZoom(2.2);
+      }
+      lightboxState.lastTapTime = 0;
+    } else {
+      lightboxState.lastTapTime = now;
+      lightboxState.lastTapX = event.clientX;
+      lightboxState.lastTapY = event.clientY;
+    }
   }
 }
 

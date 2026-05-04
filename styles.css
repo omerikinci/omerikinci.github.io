@@ -43,7 +43,6 @@ main {
 
 .hero {
   padding: clamp(2rem, 7vh, 5rem) 0 3rem;
-  border-bottom: 1px solid var(--line-strong);
 }
 
 .eyebrow {
@@ -60,6 +59,13 @@ h1 {
   font-size: clamp(2rem, 6vw, 4rem);
   line-height: 1.06;
   letter-spacing: 0;
+}
+
+.hero-subtitle {
+  margin: 0.7rem 0 0;
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  font-weight: 700;
+  line-height: 1.25;
 }
 
 .lead {
@@ -97,31 +103,6 @@ h1 {
   border: 1px solid var(--line);
 }
 
-.stats {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 0.9rem;
-  list-style: none;
-  margin: 1.8rem 0 0;
-  padding: 0;
-}
-
-.stats li {
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 0.8rem 0.9rem;
-  color: var(--muted);
-  background: var(--card);
-}
-
-.stats span {
-  display: block;
-  color: var(--text);
-  font-size: 1.2rem;
-  font-weight: 700;
-  margin-bottom: 0.2rem;
-}
-
 .section {
   margin-top: 3.2rem;
   padding-top: 0.2rem;
@@ -132,43 +113,6 @@ h2 {
   font-size: clamp(1.35rem, 3vw, 2rem);
   padding-bottom: 0.55rem;
   border-bottom: 1px solid var(--line-strong);
-}
-
-.timeline {
-  display: grid;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.timeline-item {
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 1rem;
-}
-
-.timeline-meta {
-  margin: 0 0 0.4rem;
-  color: var(--accent);
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.82rem;
-}
-
-.timeline-item h3 {
-  margin: 0;
-  font-size: 1.05rem;
-}
-
-.timeline-role {
-  margin: 0.4rem 0 0.7rem;
-  color: var(--muted);
-  font-size: 0.93rem;
-}
-
-.timeline-item p {
-  margin: 0;
-  color: var(--muted);
-  line-height: 1.65;
 }
 
 .skill-grid {
@@ -510,31 +454,6 @@ h2 {
 
 .lightbox-counter {
   display: none;
-}
-
-.edu-grid {
-  margin-top: 1rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 0.8rem;
-}
-
-.edu-grid article {
-  padding: 1rem;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--card);
-}
-
-.edu-grid h3 {
-  margin: 0;
-  font-size: 0.98rem;
-}
-
-.edu-grid p {
-  margin: 0.5rem 0 0;
-  color: var(--muted);
-  line-height: 1.5;
 }
 
 .site-footer {

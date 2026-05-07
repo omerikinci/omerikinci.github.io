@@ -35,6 +35,39 @@ body {
   overflow: hidden;
 }
 
+.language-switch {
+  position: fixed;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 95;
+  display: inline-flex;
+  gap: 0.2rem;
+  padding: 0.2rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgb(255 255 255 / 92%);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0.7rem 1.8rem rgb(0 0 0 / 10%);
+}
+
+.language-option {
+  min-width: 2.25rem;
+  height: 2rem;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.language-option.is-active {
+  background: var(--text);
+  color: #ffffff;
+}
+
 main {
   width: min(1120px, 100% - 2rem);
   margin: 0 auto;

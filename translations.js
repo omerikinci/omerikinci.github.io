@@ -160,9 +160,9 @@ function getPageKey() {
 function getSavedLanguage() {
   try {
     const saved = localStorage.getItem("site-language");
-    return saved === "en" || saved === "tr" ? saved : "tr";
+    return saved === "en" || saved === "tr" ? saved : "en";
   } catch {
-    return "tr";
+    return "en";
   }
 }
 

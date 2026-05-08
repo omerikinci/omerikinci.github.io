@@ -62,6 +62,9 @@ const siteTranslations = {
       items: [
         { selector: "h1", text: { tr: "Elektronik Kör Yük V1", en: "Electronic Dummy Load V1" } },
         { selector: ".lead", text: { tr: "Var olan elektronik kör yük prototip cihazının V1 versiyonunu geliştirdim. Bu çalışma kapsamında kasa yerleşimi, PCB uygulaması, test bağlantıları ve osiloskopla sinyal takibi üzerinde iyileştirmeler yaptım.", en: "I developed the V1 version of my existing electronic dummy load prototype. In this version I improved the enclosure layout, PCB implementation, test connections and oscilloscope-based signal checks." } },
+        { selector: ".project-download-kicker", text: { tr: "Şematik", en: "Schematic" } },
+        { selector: ".project-download-title", text: { tr: "Şematik PDF", en: "Schematic PDF" } },
+        { selector: ".project-download-note", text: { tr: "Tıklayınca PDF dosyası indirilir.", en: "Click to download the PDF file." } },
         { selector: ".project-detail-text h2", text: { tr: "Geliştirme Süreci", en: "Development Process" } },
         { selector: ".project-detail-text p:nth-of-type(1)", text: { tr: "Elektronik kör yük cihazının ilk stabil versiyonu olan V1'i tamamladım.", en: "I completed V1, the first stable version of the electronic dummy load device." } },
         { selector: ".project-detail-text p:nth-of-type(2)", text: { tr: "Bu versiyondan önce bir prototip cihaz ürettim. Prototip üzerinde testler gerçekleştirdim, karşılaştığım problemleri not aldım ve V1 tasarımına bu hataları düzeltecek şekilde başladım.", en: "Before this version, I built a prototype device. I tested it, noted the problems I encountered and started the V1 design with the goal of fixing those issues." } },
@@ -159,8 +162,9 @@ function getPageKey() {
 
 function getSavedLanguage() {
   try {
-    const saved = localStorage.getItem("site-language");
-    return saved === "en" || saved === "tr" ? saved : "en";
+    const urlLanguage = new URLSearchParams(window.location.search).get("lang");
+    if (urlLanguage === "en" || urlLanguage === "tr") return urlLanguage;
+    return "en";
   } catch {
     return "en";
   }
@@ -197,9 +201,44 @@ function applyTranslationSet(set, language) {
   });
 }
 
+function withSiteLanguage(url, language) {
+  try {
+    const parsed = new URL(url, window.location.href);
+    if (parsed.origin !== window.location.origin) return url;
+    if (!parsed.pathname.endsWith(".html") && parsed.pathname !== "/" && parsed.pathname !== "") return url;
+    parsed.searchParams.set("lang", language);
+    return `${parsed.pathname}${parsed.search}${parsed.hash}`;
+  } catch {
+    return url;
+  }
+}
+
+function syncLanguageLinks(language) {
+  document.querySelectorAll('a[href]').forEach((link) => {
+    const href = link.getAttribute("href");
+    if (!href || !href.includes(".html")) return;
+    link.setAttribute("href", withSiteLanguage(href, language));
+  });
+
+  document.querySelectorAll(".project-card[data-project-url]").forEach((card) => {
+    card.dataset.projectUrl = withSiteLanguage(card.dataset.projectUrl, language);
+  });
+}
+
+function syncCurrentLanguageUrl(language) {
+  try {
+    const url = new URL(window.location.href);
+    url.searchParams.set("lang", language);
+    window.history.replaceState({}, "", `${url.pathname}${url.search}${url.hash}`);
+  } catch {
+    return;
+  }
+}
+
 function applyLanguage(language) {
   const normalized = language === "en" ? "en" : "tr";
   saveLanguage(normalized);
+  syncCurrentLanguageUrl(normalized);
   document.documentElement.lang = normalized;
   document.querySelectorAll(".language-option").forEach((button) => {
     const isActive = button.dataset.language === normalized;
@@ -208,6 +247,7 @@ function applyLanguage(language) {
   });
   applyTranslationSet(siteTranslations.common, normalized);
   applyTranslationSet(siteTranslations.pages[getPageKey()], normalized);
+  syncLanguageLinks(normalized);
 }
 
 function initLanguageSwitcher() {

@@ -68,6 +68,10 @@ body {
   color: #ffffff;
 }
 
+.no-scroll .language-switch {
+  display: none;
+}
+
 main {
   width: min(1120px, 100% - 2rem);
   margin: 0 auto;
@@ -230,6 +234,45 @@ h2 {
 .project-open-link:hover {
   text-decoration: none;
   color: var(--muted);
+}
+
+.project-download-panel {
+  margin-top: 1.1rem;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card);
+}
+
+.project-download-kicker {
+  margin: 0 0 0.55rem;
+  color: var(--muted);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+}
+
+.project-download-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.project-download-title {
+  font-weight: 700;
+}
+
+.project-download-note {
+  color: var(--muted);
+  font-size: 0.92rem;
+  text-align: right;
+}
+
+.project-download-link:hover .project-download-title {
+  text-decoration: underline;
 }
 
 .project-text {
@@ -521,6 +564,16 @@ h2 {
 
   .gallery {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .project-download-link {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .project-download-note {
+    text-align: left;
   }
 
   .lightbox {

@@ -203,7 +203,10 @@ function withSiteLanguage(url, language) {
   try {
     const parsed = new URL(url, window.location.href);
     if (parsed.origin !== window.location.origin) return url;
-    if (!parsed.pathname.endsWith(".html") && parsed.pathname !== "/" && parsed.pathname !== "/en/" && parsed.pathname !== "") return url;
+
+    const pageName = parsed.pathname.split("/").pop() || "";
+    const hasNonHtmlExtension = pageName.includes(".") && !pageName.endsWith(".html");
+    if (hasNonHtmlExtension) return url;
 
     const withoutLanguagePrefix = parsed.pathname.replace(/^\/en(?=\/|$)/, "") || "/";
     parsed.pathname = language === "en"

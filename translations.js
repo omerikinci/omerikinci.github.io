@@ -160,14 +160,12 @@ function getPageKey() {
   return page.replace(/\.html$/, "");
 }
 
-function getSavedLanguage() {
-  try {
-    const urlLanguage = new URLSearchParams(window.location.search).get("lang");
-    if (urlLanguage === "en" || urlLanguage === "tr") return urlLanguage;
-    return "en";
-  } catch {
-    return "en";
-  }
+function isEnglishPath(pathname = window.location.pathname) {
+  return pathname === "/en/" || pathname.startsWith("/en/");
+}
+
+function getCurrentLanguage() {
+  return isEnglishPath() ? "en" : "tr";
 }
 
 function saveLanguage(language) {
@@ -205,12 +203,41 @@ function withSiteLanguage(url, language) {
   try {
     const parsed = new URL(url, window.location.href);
     if (parsed.origin !== window.location.origin) return url;
-    if (!parsed.pathname.endsWith(".html") && parsed.pathname !== "/" && parsed.pathname !== "") return url;
-    parsed.searchParams.set("lang", language);
+    if (!parsed.pathname.endsWith(".html") && parsed.pathname !== "/" && parsed.pathname !== "/en/" && parsed.pathname !== "") return url;
+
+    const withoutLanguagePrefix = parsed.pathname.replace(/^\/en(?=\/|$)/, "") || "/";
+    parsed.pathname = language === "en"
+      ? `/en${withoutLanguagePrefix === "/" ? "/" : withoutLanguagePrefix}`
+      : withoutLanguagePrefix;
+    parsed.searchParams.delete("lang");
     return `${parsed.pathname}${parsed.search}${parsed.hash}`;
   } catch {
     return url;
   }
+}
+
+function getPublicLanguageUrl(language) {
+  const path = withSiteLanguage(window.location.href, language).split(/[?#]/)[0];
+  return `https://omerikinci.com${path}`;
+}
+
+function upsertHeadLink(rel, attributes) {
+  const selector = attributes.hreflang
+    ? `link[rel="${rel}"][hreflang="${attributes.hreflang}"]`
+    : `link[rel="${rel}"]`;
+  let link = document.querySelector(selector);
+  if (!link) {
+    link = document.createElement("link");
+    link.setAttribute("rel", rel);
+    document.head.appendChild(link);
+  }
+  Object.entries(attributes).forEach(([name, value]) => link.setAttribute(name, value));
+}
+
+function syncSeoLinks(language) {
+  upsertHeadLink("canonical", { href: getPublicLanguageUrl(language) });
+  upsertHeadLink("alternate", { hreflang: "tr", href: getPublicLanguageUrl("tr") });
+  upsertHeadLink("alternate", { hreflang: "en", href: getPublicLanguageUrl("en") });
 }
 
 function syncLanguageLinks(language) {
@@ -225,20 +252,19 @@ function syncLanguageLinks(language) {
   });
 }
 
-function syncCurrentLanguageUrl(language) {
-  try {
-    const url = new URL(window.location.href);
-    url.searchParams.set("lang", language);
-    window.history.replaceState({}, "", `${url.pathname}${url.search}${url.hash}`);
-  } catch {
-    return;
-  }
+function navigateToLanguage(language) {
+  const target = withSiteLanguage(window.location.href, language);
+  const current = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+  if (target !== current) window.location.href = target;
 }
 
-function applyLanguage(language) {
+function applyLanguage(language, shouldNavigate = false) {
   const normalized = language === "en" ? "en" : "tr";
   saveLanguage(normalized);
-  syncCurrentLanguageUrl(normalized);
+  if (shouldNavigate) {
+    navigateToLanguage(normalized);
+    return;
+  }
   document.documentElement.lang = normalized;
   document.querySelectorAll(".language-option").forEach((button) => {
     const isActive = button.dataset.language === normalized;
@@ -248,6 +274,7 @@ function applyLanguage(language) {
   applyTranslationSet(siteTranslations.common, normalized);
   applyTranslationSet(siteTranslations.pages[getPageKey()], normalized);
   syncLanguageLinks(normalized);
+  syncSeoLinks(normalized);
 }
 
 function initLanguageSwitcher() {
@@ -261,7 +288,7 @@ function initLanguageSwitcher() {
     button.className = "language-option";
     button.dataset.language = language;
     button.textContent = language.toUpperCase();
-    button.addEventListener("click", () => applyLanguage(language));
+    button.addEventListener("click", () => applyLanguage(language, true));
     switcher.appendChild(button);
   });
 
@@ -269,4 +296,4 @@ function initLanguageSwitcher() {
 }
 
 initLanguageSwitcher();
-applyLanguage(getSavedLanguage());
+applyLanguage(getCurrentLanguage());
